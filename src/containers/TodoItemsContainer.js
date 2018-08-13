@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import TodoItemComponent from '../components/TodoItemComponent';
 import TodoItem from '../models/TodoItem';
 
 function TodoItemsContainer({ todos }) {
   const todoItems = todos.map(todo => (
-    <li className="list-unstyled pt-1">
-      <TodoItemComponent key={todo.id} todo={todo} />
+    <li className="list-unstyled pt-1" key={todo.id}>
+      <TodoItemComponent todo={todo} />
     </li>
   ));
 
@@ -18,7 +19,7 @@ function TodoItemsContainer({ todos }) {
 }
 
 TodoItemsContainer.propTypes = {
-  todos: PropTypes.arrayOf(TodoItem).isRequired,
+  todos: PropTypes.arrayOf(PropTypes.instanceOf(TodoItem)).isRequired,
 };
 
-export default TodoItemsContainer;
+export default connect(({ todos }) => ({ todos }))(TodoItemsContainer);
