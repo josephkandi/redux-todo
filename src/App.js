@@ -1,6 +1,7 @@
 import React from 'react';
 import InputElement from './components/InputElement';
 import TodoItemsContainer from './containers/TodoItemsContainer';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         Todo Redux
       </h1>
       <InputElement />
+      <Footer />
       <TodoItemsContainer />
     </div>
   );
