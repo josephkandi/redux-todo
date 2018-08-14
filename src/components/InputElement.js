@@ -22,7 +22,7 @@ class InputElement extends Component {
     }
   }
 
-  addTodo(item) {
+  addTodo = (item) => {
     const { dispatch } = this.props;
     dispatch(addTodoItem(item));
     this.setState({ text: '' });
