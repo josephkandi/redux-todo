@@ -1,4 +1,6 @@
-import { ADD_ITEM, DELETE_ITEM, TOGGLE_TODO } from '../constants/constants';
+import {
+  ADD_ITEM, DELETE_ITEM, TOGGLE_TODO,
+} from '../constants/constants';
 import TodoItem from '../models/TodoItem';
 
 export default (state = [], action) => {
@@ -20,10 +22,8 @@ export default (state = [], action) => {
 
         return Object.assign(new TodoItem(), { ...item }, { completed: !item.completed });
       });
-
       return todoItems;
     }
-
     default:
       return state;
   }
