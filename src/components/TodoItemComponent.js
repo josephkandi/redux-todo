@@ -6,9 +6,17 @@ import deleteTodoItem from '../actions/deleteTodoItem';
 import toggleTodo from '../actions/toggleTodo';
 
 class TodoItemComponent extends Component {
-  handleChange = () => {
+  constructor() {
+    super();
+    this.checkbox = React.createRef();
+  }
+
+  handleChange = (evt) => {
     const { toggle, todo } = this.props;
     toggle(todo.id);
+    if (evt.target.checked) {
+      this.checkbox.current.checked = false;
+    }
   }
 
   render = () => {
@@ -27,11 +35,11 @@ class TodoItemComponent extends Component {
     return (
       <div className="row">
         <div className="col-sm-11">
-          <input type="checkbox" className="form-check-input" onChange={() => this.handleChange()} />
+          <input ref={this.checkbox} type="checkbox" className="form-check-input" onChange={evt => this.handleChange(evt)} />
           {todoLabel}
         </div>
         <div className="col-sm-1">
-          <button type="button" className="btn btn-light" onClick={() => { deleteTodo(todo.id); }} checked={todo.completed}>
+          <button type="button" className="btn btn-light" onClick={() => { deleteTodo(todo.id); }}>
             x
           </button>
         </div>
